@@ -1598,6 +1598,37 @@ RCT_EXPORT_METHOD(sendMediaData:(NSString *)dataStr
   }
 }
 
+// create data stream
+RCT_EXPORT_METHOD(createDataStream
+                  :(NSDictionary *)options
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+  NSInteger streamId = 0;
+  if (options[@"streamId"] != nil) {
+    streamId = [options[@"streamId"] integerValue];
+  }
+  [self.rtcEngine createDataStream:streamId reliable:[options[@"reliable"] boolValue] ordered:[options[@"ordered"] boolValue]];
+  resolve(@[[NSNumber numberWithInteger:streamId]]);
+}
+
+// send stream message
+RCT_EXPORT_METHOD(sendStreamMessage:(NSInteger)streamId data:(NSData*)data
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+  NSInteger res = [self.rtcEngine sendStreamMessage:(streamId) data:data];
+  if (res == 0) {
+    resolve(@{@"success": @(YES)});
+  } else {
+    reject(@"131001", @"sendStreamMessage failed", [self makeNSError:@{
+                                                                       @"code": @(131001),
+                                                                       @"message":@{
+                                                                           @"success": @(NO),
+                                                                           @"value":[NSNumber numberWithInteger:res]
+                                                                           }
+                                                                       }]);
+  }
+}
+
 RCT_EXPORT_METHOD(registerMediaMetadataObserver
                   :(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {

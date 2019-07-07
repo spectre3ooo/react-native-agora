@@ -1018,9 +1018,19 @@ class RtcEngine {
     }
 
     /**
-     * @deprecated createDataStream
-     * createDataStream
+     * create data stream
+     *
+     * This method creates data stream with options
+     *
+     * @param options {@link DataStreamOption}
      */
+    public static createDataStream(options: DataStreamOption) {
+        return Agora.createDataStream(options);
+    }
+
+    public static sendStreamMessage(streamId: number, data: any) {
+        return Agora.sendStreamMessage(streamId, data);
+    }
 
     /**
      * @deprecated setupLocalVideo
