@@ -27,6 +27,84 @@ static AgoraConst *_person;
   return _person;
 }
 
++ (NSArray<NSString*>*) supportEvents {
+    NSArray<NSString*>* array = @[AGWarning,
+                                  AGError,
+                                  AGApiCallExecute,
+                                  AGJoinChannelSuccess,
+                                  AGRejoinChannelSuccess,
+                                  AGLeaveChannel,
+                                  AGClientRoleChanged,
+                                  AGUserJoined,
+                                  AGUserOffline,
+                                  AGConnectionStateChanged,
+                                  AGConnectionLost,
+                                  AGTokenPrivilegeWillExpire,
+                                  AGRequestToken,
+                                  
+                                  AGMicrophoneEnabled,
+                                  AGAudioVolumeIndication,
+                                  AGActiveSpeaker,
+                                  AGFirstLocalAudioFrame,
+                                  AGFirstRemoteAudioFrame,
+                                  AGFirstRemoteAudioDecoded,
+                                  AGFirstLocalVideoFrame,
+                                  AGFirstRemoteVideoDecoded,
+                                  AGFirstRemoteVideoFrame,
+                                  AGUserMuteAudio,
+                                  AGUserMuteVideo,
+                                  AGUserEnableVideo,
+                                  AGUserEnableLocalVideo,
+                                  AGVideoSizeChanged,
+                                  AGRemoteVideoStateChanged,
+                                  AGLocalPublishFallbackToAudioOnly,
+                                  AGRemoteSubscribeFallbackToAudioOnly,
+                                  
+                                  AGAudioRouteChanged,
+                                  AGCameraFocusAreaChanged,
+                                  AGCameraExposureAreaChanged,
+                                  
+                                  AGRtcStats,
+                                  AGLastmileQuality,
+                                  AGNetworkQuality,
+                                  AGLocalVideoStats,
+                                  AGRemoteVideoStats,
+                                  AGRemoteAudioStats,
+                                  AGAudioTransportStatsOfUid,
+                                  AGVideoTransportStatsOfUid,
+                                  
+                                  AGAudioMixingStateChanged,
+                                  AGRemoteAudioMixingStart,
+                                  AGRemoteAudioMixingFinish,
+                                  AGAudioEffectFinish,
+                                  
+                                  AGStreamPublished,
+                                  AGStreamUnpublish,
+                                  AGTranscodingUpdate,
+                                  
+                                  AGStreamInjectedStatus,
+                                  
+                                  AGReceiveStreamMessage,
+                                  AGOccurStreamMessageError,
+                                  
+                                  AGMediaEngineLoaded,
+                                  AGMediaEngineStartCall,
+                                  AGIntervalTest,
+                                  AGLastmileProbeTestResult,
+                                  AGRtmpStreamingStateChanged,
+                                  AGLocalVideoChanged,
+                                  AGNetworkTypeChanged,
+                                  AGFirstRemoteAudioFrame,
+                                  AGMediaMetaDataReceived];
+  
+  NSMutableArray<NSString *> *eventList = [NSMutableArray arrayWithCapacity:[array count]];
+  [array enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    id mapObj = [NSString stringWithFormat:@"%@%@", AG_PREFIX, obj];
+    [eventList addObject:mapObj];
+  }];
+  return eventList;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
   return _person;
 }

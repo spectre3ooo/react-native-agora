@@ -8,6 +8,8 @@
 
 #import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 
+static NSString *AG_PREFIX = @"ag_rtc";
+
 static NSString *RCTAgoraErrorDomain = @"RCTAgoraErrorDomain";
 
 static NSString *AGWarning = @"warning";
@@ -30,7 +32,6 @@ static NSString *AGActiveSpeaker = @"activeSpeaker";
 static NSString *AGFirstLocalAudioFrame = @"firstLocalAudioFrame";
 static NSString *AGFirstRemoteAudioFrame = @"firstRemoteAudioFrame";
 static NSString *AGFirstRemoteAudioDecoded = @"firstRemoteAudioDecoded";
-static NSString *AGVideoStopped = @"videoStopped";
 static NSString *AGFirstLocalVideoFrame = @"firstLocalVideoFrame";
 static NSString *AGFirstRemoteVideoDecoded = @"firstRemoteVideoDecoded";
 static NSString *AGFirstRemoteVideoFrame = @"firstRemoteVideoFrame";
@@ -44,7 +45,6 @@ static NSString *AGLocalPublishFallbackToAudioOnly = @"localPublishFallbackToAud
 static NSString *AGRemoteSubscribeFallbackToAudioOnly = @"remoteSubscribeFallbackToAudioOnly";
 
 static NSString *AGAudioRouteChanged = @"audioRouteChanged";
-static NSString *AGCameraReady = @"cameraReady";
 static NSString *AGCameraFocusAreaChanged = @"cameraFocusAreaChanged";
 static NSString *AGCameraExposureAreaChanged = @"cameraExposureAreaChanged";
 
@@ -97,4 +97,5 @@ typedef NS_ENUM(NSInteger, AgoraModeType) {
 
 + (instancetype)share;
 
++ (NSArray<NSString*> *) supportEvents;
 @end
